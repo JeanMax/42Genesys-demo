@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
@@ -12,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+    /**
+     * A constructor is needed to initialize the ArrayCollection
+     */
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -35,6 +44,12 @@ class Article
      */
     private $author;
 
+    /**
+     * @var Picture[]
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Picture", cascade={"persist"})
+     */
+    private $pictures;
 
     /**
      * Get id
@@ -93,5 +108,42 @@ class Article
     {
         return $this->author;
     }
-}
 
+    /**
+     * Get pictures
+     *
+     * @return Picture[]
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add picture
+     *
+     * @param Picture $picture
+     *
+     * @return Article
+     */
+    public function addPicture(Picture $picture)
+    {
+        $this->pictures[] = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Remove picture
+     *
+     * @param Picture $picture
+     *
+     * @return Article
+     */
+    public function removePicture(Picture $picture)
+    {
+        $this->pictures->removeElement($picture);
+
+        return $this;
+    }
+}
