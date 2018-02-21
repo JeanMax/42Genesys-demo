@@ -1,6 +1,6 @@
 # genesys
 
-un site (2 pages) avec une vaingtaine d'articles
+un site (2 pages) avec une vingtaine d'articles
 
 ## en commun:
 * Un menu, pour naviguer entre les 2 pages
