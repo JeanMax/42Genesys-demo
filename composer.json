@@ -1,6 +1,6 @@
 {
     "name": "mc/genesys",
-    "license": "proprietary",
+    "license": "beerware",
     "type": "project",
     "autoload": {
         "psr-4": {
