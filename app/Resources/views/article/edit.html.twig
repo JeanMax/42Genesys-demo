@@ -2,24 +2,19 @@
 {% import "macro.html.twig" as macro %}
 
 {% block body %}
-    <h1>Article edit</h1>
-
+    <h1 class=my-4>Article edit</h1>
 
     {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(edit_form) }}
         {{macro.input('Auteur', edit_form.author)}}
         {{macro.input('Contenu', edit_form.content)}}
+        {{macro.input('Images', edit_form.pictures)}}
         {{macro.submit('Edit')}}
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                {{macro.submit('Delete')}}
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {{ form_start(delete_form) }}
+        {{macro.submit('Delete')}}
+    {{ form_end(delete_form) }}
+
+    <a href="{{ path('article_show', { 'id': article.id }) }}">&larr; Back to the article</a>
 {% endblock %}

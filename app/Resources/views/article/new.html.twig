@@ -2,18 +2,15 @@
 {% import "macro.html.twig" as macro %}
 
 {% block body %}
-    <h1>Article creation</h1>
+    <h1 class=my-4>Article creation</h1>
 
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(form) }}
         {{macro.input('Auteur', form.author)}}
         {{macro.input('Contenu', form.content)}}
+        {{macro.input('Images', form.pictures)}}
         {{macro.submit('Create')}}
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('article_index') }}">&larr; Back to the list</a>
 {% endblock %}
