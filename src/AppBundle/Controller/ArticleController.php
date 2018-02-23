@@ -32,6 +32,23 @@ class ArticleController extends Controller
     }
 
     /**
+     * Lists all article entities.
+     *
+     * @Route("/admin", name="article_admin")
+     * @Method("GET")
+     */
+    public function adminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository('AppBundle:Article')->findAll();
+
+        return $this->render('article/admin.html.twig', array(
+            'articles' => $articles,
+        ));
+    }
+
+    /**
      * Creates a new article entity.
      *
      * @Route("/new", name="article_new")
