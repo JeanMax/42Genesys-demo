@@ -1,0 +1,29 @@
+{% macro input(name, value, id) %}
+    <div class="form-group">
+        {% if value.vars.required %}
+            <label class="col-sm-3 control-label required"> {{ name }} <span style="color: red">*</span></label>
+        {% else %}
+            <label class="col-sm-3 control-label"> {{ name }} </label>
+        {% endif %}
+
+        <div class="col-sm-4">
+            {{ form_errors(value) }}
+            {% if value.vars.expanded is defined and value.vars.expanded %}
+                {{ form_widget(value) }}
+            {% elseif id %}
+                {{ form_widget(value, {'id': "#{id}"}) }}
+            {% else %}
+                {{ form_widget(value, {'attr': {'class': 'form-control'}}) }}
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+
+{% macro submit(value) %}
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input class="btn btn-primary" type="submit" value={{ value }}>
+        </div>
+    </div>
+{% endmacro %}

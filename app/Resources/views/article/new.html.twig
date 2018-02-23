@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
+{% import "macro.html.twig" as macro %}
 
 {% block body %}
     <h1>Article creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        {{macro.input('Auteur', form.author)}}
+        {{macro.input('Contenu', form.content)}}
+        {{macro.submit('Create')}}
     {{ form_end(form) }}
 
     <ul>

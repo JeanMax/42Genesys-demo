@@ -13,7 +13,11 @@ class ArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('content')->add('author')->add('pictures');
+        $builder
+            ->add('content')
+            ->add('author')
+            // ->add('pictures')
+        ;
     }/**
      * {@inheritdoc}
      */
