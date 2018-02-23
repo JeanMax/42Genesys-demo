@@ -5,6 +5,10 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Entity\Picture;
+
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
 {
@@ -14,11 +18,22 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content')
             ->add('author')
-            // ->add('pictures')
+            ->add('content')
+            ->add('pictures', EntityType::class, array(
+                'required' => false,
+                'class' => 'AppBundle:Picture',
+                'choice_label' => 'path',
+                'multiple' => true,
+                'expanded' => true,
+                'query_builder' => function (\AppBundle\Repository\PictureRepository $r) {
+                    return $r->createQueryBuilder('p');
+                },
+            ))
         ;
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
